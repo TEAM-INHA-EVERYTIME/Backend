@@ -43,6 +43,7 @@ public class UserService {
         user.setUserId(request.getUserId());
         user.setPw(request.getPw());
         user.setName(request.getName());
+        user.setNickName(request.getNickName());
         user.setGender(request.getGender());
         user.setBirth(request.getBirth());
         user.setNumber(request.getNumber());
@@ -58,6 +59,7 @@ public class UserService {
     private void mapModifyRequestToEntity(User user, UserModifyRequest request) {
         Optional.ofNullable(request.getPw()).ifPresent(user::setPw);
         Optional.ofNullable(request.getName()).ifPresent(user::setName);
+        Optional.ofNullable(request.getNickName()).ifPresent(user::setNickName);
         Optional.ofNullable(request.getBirth()).ifPresent(user::setBirth);
         Optional.ofNullable(request.getNumber()).ifPresent(user::setNumber);
         Optional.ofNullable(request.getImage()).ifPresent(user::setImage);

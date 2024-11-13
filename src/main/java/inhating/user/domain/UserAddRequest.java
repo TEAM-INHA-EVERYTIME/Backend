@@ -14,6 +14,7 @@ public class UserAddRequest {
     private String userId;
     private String pw;
     private String name;
+    private String nickName;
     private Boolean gender;
     private LocalDate birth;
     private int number;

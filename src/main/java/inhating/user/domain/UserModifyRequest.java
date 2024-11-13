@@ -12,6 +12,7 @@ public Class UserModifyRequest {
     private String userId;
     private String pw;
     private String name;
+    private String nickName;
     //private Boolean gender; 변경 불가
     private LocalDate birth;
     private int number;

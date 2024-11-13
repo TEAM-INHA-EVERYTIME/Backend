@@ -28,6 +28,9 @@ public class User {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "nickname")
+    private String nickName;
+
     @Column(name = "gender")
     private Boolean gender;
 

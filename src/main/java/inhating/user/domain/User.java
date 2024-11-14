@@ -1,11 +1,9 @@
 package inhating.user.domain;
 
-import inhating.user.*;
-
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -35,7 +33,7 @@ public class User {
     private Boolean gender;
 
     @Column(name = "birth")
-    private LocalDate birth;
+    private LocalDateTime birth;
 
     @Column(name = "number")
     private int number;
@@ -68,11 +66,11 @@ public class User {
     private String matchingNote;
 
     @Column(name = "created_at")
-    private DateTime createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "updated_at")
-    private DateTime updatedAt;
+    private LocalDateTime updatedAt;
 
     @Column(name = "deleted_at")
-    private DataTime deletedAt;
+    private LocalDateTime deletedAt;
 }

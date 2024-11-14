@@ -1,14 +1,11 @@
 package inhating.user.domain;
 
-import inhating.user.*;
-
-import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class LoginRequst {
+public class LoginRequest {
     private String userId;
     private String pw;
 }

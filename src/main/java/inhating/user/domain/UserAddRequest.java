@@ -1,11 +1,8 @@
 package inhating.user.domain;
 
-import inhating.user.*;
-
-import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -16,7 +13,7 @@ public class UserAddRequest {
     private String name;
     private String nickName;
     private Boolean gender;
-    private LocalDate birth;
+    private LocalDateTime birth;
     private int number;
     private String image;
     private String major;

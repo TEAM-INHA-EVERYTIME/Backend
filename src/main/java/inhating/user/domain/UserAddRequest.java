@@ -27,4 +27,5 @@ public class UserAddRequest {
     private String introduce;
     //private int taxiTemperature; 사용자 요청이 아닌 개별 로직 처리
     //private String matchingNote; 사용자 요청이 아닌 개별 로직 처리
+    //private String Tier; 사용자 요청이 아닌 개별 로직 처리
 }

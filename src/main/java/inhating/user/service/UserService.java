@@ -54,6 +54,7 @@ public class UserService {
         user.setAlcohol(request.getAlcohol());
         user.setSmoke(request.getSmoke());
         user.setIntroduce(request.getIntroduce());
+        user.setTier(request.getTier());
     }
 
     private void mapModifyRequestToEntity(User user, UserModifyRequest request) {
@@ -69,5 +70,6 @@ public class UserService {
         Optional.ofNullable(request.getAlcohol()).ifPresent(user::setAlcohol);
         Optional.ofNullable(request.getSmoke()).ifPresent(user::setSmoke);
         Optional.ofNullable(request.getIntroduce()).ifPresent(user::setIntroduce);
+        Optional.ofNullable(request.getTier()).ifPresent(user::setTier);
     }
 }

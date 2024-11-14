@@ -67,6 +67,9 @@ public class User {
     @Column(name = "matching_note")
     private String matchingNote;
 
+    @Column(name = "Tier")
+    private String Tier;
+
     @Column(name = "created_at")
     private DateTime createdAt;
 

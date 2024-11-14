@@ -1,6 +1,6 @@
 package inhating.user.service;
 
-import inhating.user.*;
+import inhating.user.domain.*;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +25,8 @@ public class UserService {
     @Transactional
     public User updateUser(Long id, UserModifyRequest request) {
         User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + id));
+
         mapModifyRequestToEntity(user, request);
         return userRepository.save(user);
     }
@@ -32,11 +34,14 @@ public class UserService {
     @Transactional
     public void deleteUser(Long id) {
         User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + id));
+
         userRepository.delete(user);
     }
 
     public User findUserById(Long id) {
         return userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + id));
     }
 
     private void mapAddRequestToEntity(User user, UserAddRequest request) {

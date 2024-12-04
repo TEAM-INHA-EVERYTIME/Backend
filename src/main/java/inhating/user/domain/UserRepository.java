@@ -1,6 +1,5 @@
 package inhating.user.domain;
 
-import inhating.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 

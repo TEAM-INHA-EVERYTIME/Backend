@@ -1,11 +1,11 @@
-package inhating.user.domain; // 실제 패키지에 맞게 수정하세요
+package inhating.user.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class LoginRequest {
-    private String userId; // JSON에서 매핑될 필드
-    private String pw;     // JSON에서 매핑될 필드
+    private String userId;
+    private String pw;
 }

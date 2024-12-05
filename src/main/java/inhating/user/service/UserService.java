@@ -21,8 +21,8 @@ public class UserService {
     }
 
     // 로그인
-    public Optional<User> loginUser(Long id, String pw) {
-        return userRepository.findById(id)
+    public Optional<User> loginUser(String userId, String pw) {
+        return userRepository.findByUserId(userId)
                 .filter(user -> user.getPw().equals(pw));
     }
 
@@ -55,7 +55,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    // 사용자 검색
+    // 고유 id를 통한 사용자 검색 (회원 탈퇴를 위한 로직)
     public User findById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));

@@ -18,6 +18,8 @@ bin/
 !**/src/test/**/bin/
 
 ### IntelliJ IDEA ###
+application.properties
+
 .idea
 *.iws
 *.iml
@@ -37,6 +39,5 @@ out/
 .vscode/
 
 
-# Ignore application.properties
-/src/main/resources/application.properties
+.DS_Store
 

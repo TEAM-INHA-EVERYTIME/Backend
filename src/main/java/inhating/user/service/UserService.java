@@ -29,10 +29,22 @@ public class UserService {
     // 정보 수정
     public User updateUser(Long id, User updatedInfo) {
         return userRepository.findById(id).map(user -> {
+            user.setUserId(updatedInfo.getUserId());
+            user.setPw(updatedInfo.getPw());
             user.setName(updatedInfo.getName());
             user.setNickName(updatedInfo.getNickName());
+            //user.setGender(updatedInfo.getGender());  성별 수정 불가 (악용 방지)
+            user.setBirth(updatedInfo.getBirth());
+            user.setNumber(updatedInfo.getNumber());
+            user.setImage(updatedInfo.getImage());
             user.setMajor(updatedInfo.getMajor());
+            //user.setStudentNumber(updatedInfo.getStudentNumber());    학번 수정 불가 (위조 방지)
+            user.setMBTI(updatedInfo.getMBTI());
+            user.setAlcohol(updatedInfo.getAlcohol());
+            user.setSmoke(updatedInfo.getSmoke());
             user.setIntroduce(updatedInfo.getIntroduce());
+            //user.setTaxiTemperature(updatedInfo.getTaxiTemperature());  택시 온도 사용자가 수정 불가
+            //user.setMatchingNote(updatedInfo.getMatchingNote());    매칭 기록 사용자가 수정 불가
             user.setUpdatedAt(LocalDateTime.now());
             return userRepository.save(user);
         }).orElseThrow(() -> new IllegalArgumentException("User not found"));
@@ -43,7 +55,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    // 사용자 검색
+    // 고유 id를 통한 사용자 검색 (회원 탈퇴를 위한 로직)
     public User findById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));

@@ -38,8 +38,6 @@ public class UserController {
         }
     }
 
-
-
     // 정보 수정
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedInfo) {

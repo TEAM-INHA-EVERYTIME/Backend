@@ -21,8 +21,8 @@ public class UserService {
     }
 
     // 로그인
-    public Optional<User> loginUser(String userId, String pw) {
-        return userRepository.findByUserId(userId)
+    public Optional<User> loginUser(Long id, String pw) {
+        return userRepository.findById(id)
                 .filter(user -> user.getPw().equals(pw));
     }
 

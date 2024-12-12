@@ -29,7 +29,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         String requestPath = request.getServletPath();
-        if (requestPath.equals("/api/users/login") || requestPath.equals("/api/users/register")) {
+
+        // Swagger 요청 제외
+        if (requestPath.startsWith("/swagger-ui") || requestPath.startsWith("/v3/api-docs") || requestPath.startsWith("/swagger-resources")) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -41,12 +43,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             if (jwtTokenProvider.validateToken(token)) {
                 String userId = jwtTokenProvider.getUserIdFromToken(token);
+
+                System.out.println("Token User ID: " + userId);
+
                 SecurityContextHolder.getContext().setAuthentication(
-                        new JwtAuthentication(userId, null, List.of(new SimpleGrantedAuthority("ROLE_USER")))
+                        new JwtAuthentication(userId, token, List.of(new SimpleGrantedAuthority("ROLE_USER")))
                 );
             }
         }
 
         filterChain.doFilter(request, response);
     }
+
+
 }

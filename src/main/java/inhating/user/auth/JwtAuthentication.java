@@ -1,30 +1,55 @@
 package inhating.user.auth;
 
-import org.springframework.security.authentication.AbstractAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
-public class JwtAuthentication extends AbstractAuthenticationToken {
+public class JwtAuthentication implements Authentication {
 
-    private final String principal; // userId를 저장
+    private final String principal;
     private final Object credentials;
+    private final Collection<? extends GrantedAuthority> authorities;
+    private boolean authenticated = true;
 
-    // 생성자
     public JwtAuthentication(String principal, Object credentials, Collection<? extends GrantedAuthority> authorities) {
-        super(authorities);
         this.principal = principal;
         this.credentials = credentials;
-        this.setAuthenticated(true); // 인증 상태로 설정
+        this.authorities = authorities;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
     }
 
     @Override
     public Object getCredentials() {
-        return credentials; // 비밀번호 또는 토큰
+        return credentials;
+    }
+
+    @Override
+    public Object getDetails() {
+        return null;
     }
 
     @Override
     public Object getPrincipal() {
-        return principal; // userId 반환
+        return principal;
+    }
+
+    @Override
+    public boolean isAuthenticated() {
+        return authenticated;
+    }
+
+    @Override
+    public void setAuthenticated(boolean authenticated) throws IllegalArgumentException {
+        this.authenticated = authenticated;
+    }
+
+    @Override
+    public String getName() {
+        return principal;
     }
 }

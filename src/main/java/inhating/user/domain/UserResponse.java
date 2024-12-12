@@ -16,6 +16,7 @@ public class UserResponse {
     private String major;
     private String MBTI;
     private String introduce;
+    private Boolean smoke;
     private int taxiTemperature;
 
     public UserResponse(User user) {
@@ -28,6 +29,7 @@ public class UserResponse {
         this.major = user.getMajor();
         this.MBTI = user.getMBTI();
         this.introduce = user.getIntroduce();
+        this.smoke = user.getSmoke();
         this.taxiTemperature = user.getTaxiTemperature();
     }
 }

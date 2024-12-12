@@ -2,6 +2,8 @@ package inhating.user.util;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
@@ -13,7 +15,7 @@ public class JwtTokenProvider {
     private static final String SECRET_KEY = "your-secure-secret-key-your-secure-secret-key";
     private static final long EXPIRATION_TIME = 1000 * 60 * 60; // 1시간
 
-    private final Key key;
+    private static Key key;
 
     public JwtTokenProvider() {
         this.key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes());
@@ -39,8 +41,17 @@ public class JwtTokenProvider {
         }
     }
 
+    // SecurityContext에서 토큰 추출
+    public static String getTokenFromSecurityContext() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()) {
+            throw new IllegalStateException("Unauthorized");
+        }
+        return authentication.getCredentials().toString();
+    }
+
     // 토큰에서 사용자 ID 추출
-    public String getUserIdFromToken(String token) {
+    public static String getUserIdFromToken(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(key)
                 .build()
